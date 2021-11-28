@@ -39,6 +39,10 @@ struct SignInView: View {
                     .overlay(RoundedRectangle(cornerRadius: 24).strokeBorder(Color(UIColor.separator), style: StrokeStyle(lineWidth: 1)))
                     .padding(.bottom, 30)
                 
+                if viewModel.isLoading {
+                    ProgressView()
+                        .padding()
+                }
                 
                 Button{
                     viewModel.signIn()
@@ -49,6 +53,9 @@ struct SignInView: View {
                         .background(Color("GreenColor"))
                         .foregroundColor(Color.white)
                         .cornerRadius(24)
+                }
+                .alert(isPresented: $viewModel.formInvalid){
+                    Alert(title: Text(viewModel.alertText))
                 }
                 
                 Divider()
