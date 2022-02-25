@@ -21,7 +21,6 @@ class SignInViewModel: ObservableObject {
     
     func signIn() {
         isLoading = true
-            
         Auth.auth().signIn(withEmail: email, password: password){
             result, err in
             guard let user = result?.user, err == nil else {
